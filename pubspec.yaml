@@ -10,6 +10,8 @@ dependencies:
   get: 4.6.5
   flutter: 
     sdk: flutter
+  http: ^0.13.5
+  fluttertoast: ^8.1.1
 
 dev_dependencies: 
   pedantic:

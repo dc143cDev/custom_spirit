@@ -74,6 +74,36 @@ class LogoL extends StatelessWidget {
   }
 }
 
+class LogoD extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'FUNDRINK',
+      style: TextStyle(
+        fontFamily: 'SM',
+        fontWeight: FontWeight.w800,
+        color: accentBLue,
+        fontSize: 50,
+      ),
+    );
+  }
+}
+
+class LogoAB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'FUNDRINK',
+      style: TextStyle(
+        fontFamily: 'SM',
+        fontWeight: FontWeight.w800,
+        color: accentBLue,
+        fontSize: 20,
+      ),
+    );
+  }
+}
+
 class LinePrimary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

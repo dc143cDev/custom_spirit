@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kostamobile/palette.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
-
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -17,25 +15,25 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: accentBLue,
-      body: Container(
-        padding: EdgeInsets.all(40),
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 120,
-              ),
-              LogoL(),
-              SizedBox(
-                height: 30,
-              ),
-              LinePrimary(),
-              SizedBox(
-                height: 40,
-              ),
-              Form(
-                key: formKey,
-                child: TextFormField(
+      body: Form(
+        key: formKey,
+        child: Container(
+          padding: EdgeInsets.all(40),
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 120,
+                ),
+                LogoL(),
+                SizedBox(
+                  height: 30,
+                ),
+                LinePrimary(),
+                SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
                   controller: emailController,
                   validator: (val) => val == "" ? "이메일을 입력해주세요" : null,
                   keyboardType: TextInputType.emailAddress,
@@ -57,13 +55,10 @@ class _LoginViewState extends State<LoginView> {
                     hintText: 'Enter your Email',
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Form(
-                key: formKey,
-                child: TextFormField(
+                SizedBox(
+                  height: 30,
+                ),
+                TextFormField(
                   controller: passwordController,
                   validator: (val) => val == "" ? "비밀번호를 입력해주세요" : null,
                   decoration: InputDecoration(
@@ -83,49 +78,49 @@ class _LoginViewState extends State<LoginView> {
                     hintText: 'Enter your Password',
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Login',
+                SizedBox(
+                  height: 20,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      fontFamily: 'SM',
+                      color: primaryLight,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  '- OR -',
                   style: TextStyle(
                     fontFamily: 'SM',
                     color: primaryLight,
                     fontWeight: FontWeight.w400,
-                    fontSize: 18,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                '- OR -',
-                style: TextStyle(
-                  fontFamily: 'SM',
-                  color: primaryLight,
-                  fontWeight: FontWeight.w400,
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(
-                    fontFamily: 'SM',
-                    color: primaryLight,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 18,
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                      fontFamily: 'SM',
+                      color: primaryLight,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

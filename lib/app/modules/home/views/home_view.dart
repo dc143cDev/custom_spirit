@@ -1,26 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:kostamobile/app/modules/custom/views/custom_view.dart';
+import 'package:kostamobile/app/modules/funding/views/funding_view.dart';
+import '../../news/views/news_view.dart';
 
-import 'package:get/get.dart';
-import 'package:kostamobile/app/modules/login/views/login_view.dart';
+import '../../../../palette.dart';
 
-import '../controllers/home_controller.dart';
-
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final List<Widget> pages = [
+    NewsView(),
+    CustomView(),
+    FundingView(),
+  ];
+
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
+      backgroundColor: primaryLight,
+      bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 18,
+        selectedLabelStyle:
+            TextStyle(fontFamily: 'SM', fontWeight: FontWeight.w700),
+        unselectedLabelStyle:
+            TextStyle(fontFamily: 'SM', fontWeight: FontWeight.w300),
+        selectedItemColor: accentBLue,
+        backgroundColor: primaryLight,
+        currentIndex: selectedIndex,
+        onTap: (int index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.people_sharp), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.local_drink_rounded), label: 'Custom'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_outlined), label: 'Funding'),
+        ],
       ),
-      body: Center(
-        child: FloatingActionButton(
-          onPressed: () {
-            Get.to(LoginView());
-          },
-        ),
-      ),
+      body: pages[selectedIndex],
     );
   }
 }
