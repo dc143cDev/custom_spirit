@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:kostamobile/palette.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class SignView extends StatefulWidget {
+  const SignView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignView> createState() => _SignViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignViewState extends State<SignView> {
   var formKey = GlobalKey<FormState>();
+
+  var userNameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: accentBLue,
+      backgroundColor: primaryLight,
       body: Container(
         padding: EdgeInsets.all(40),
         child: Center(
@@ -41,18 +43,18 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(),
                   decoration: InputDecoration(
-                    hintStyle: TextStyle(color: accentBLue),
+                    hintStyle: TextStyle(color: primaryLight),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
                       ),
                     ),
-                    fillColor: primaryLight,
+                    fillColor: accentBLue,
                     filled: true,
                     contentPadding: EdgeInsets.only(top: 14.0),
                     prefixIcon: Icon(
                       Icons.email,
-                      color: accentBLue,
+                      color: primaryLight,
                     ),
                     hintText: 'Enter your Email',
                   ),
@@ -67,18 +69,18 @@ class _LoginViewState extends State<LoginView> {
                   controller: passwordController,
                   validator: (val) => val == "" ? "비밀번호를 입력해주세요" : null,
                   decoration: InputDecoration(
-                    hintStyle: TextStyle(color: accentBLue),
+                    hintStyle: TextStyle(color: primaryLight),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(50.0),
                       ),
                     ),
-                    fillColor: primaryLight,
+                    fillColor: accentBLue,
                     filled: true,
                     contentPadding: EdgeInsets.only(top: 14.0),
                     prefixIcon: Icon(
                       Icons.lock,
-                      color: accentBLue,
+                      color: primaryLight,
                     ),
                     hintText: 'Enter your Password',
                   ),
@@ -93,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
                   'Login',
                   style: TextStyle(
                     fontFamily: 'SM',
-                    color: primaryLight,
+                    color: accentBLue,
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
                   ),
@@ -106,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                 '- OR -',
                 style: TextStyle(
                   fontFamily: 'SM',
-                  color: primaryLight,
+                  color: accentBLue,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -119,7 +121,7 @@ class _LoginViewState extends State<LoginView> {
                   'Create Account',
                   style: TextStyle(
                     fontFamily: 'SM',
-                    color: primaryLight,
+                    color: accentBLue,
                     fontWeight: FontWeight.w800,
                     fontSize: 18,
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:kostamobile/app/modules/login/views/login_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -14,9 +15,10 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+        child: FloatingActionButton(
+          onPressed: () {
+            Get.to(LoginView());
+          },
         ),
       ),
     );
