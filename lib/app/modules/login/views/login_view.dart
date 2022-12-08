@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kostamobile/app/modules/login/views/signup_view.dart';
 import 'package:kostamobile/palette.dart';
+import 'package:get/get.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
+import 'package:http/http.dart' as http;
+
+import '../login_platform.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -7,6 +15,23 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  LoginPlatform _loginPlatform = LoginPlatform.none;
+
+  void signInWithNaver() async {
+    final NaverLoginResult result = await FlutterNaverLogin.logIn();
+
+    if (result.status == NaverLoginStatus.loggedIn) {
+      print('accessToken = ${result.accessToken}');
+      print('id = ${result.account.id}');
+      print('email = ${result.account.email}');
+      print('age = ${result.account.age}');
+
+      setState(() {
+        _loginPlatform = LoginPlatform.naver;
+      });
+    }
+  }
+
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -108,7 +133,9 @@ class _LoginViewState extends State<LoginView> {
                   height: 30,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(SignView());
+                  },
                   child: Text(
                     'Create Account',
                     style: TextStyle(
@@ -118,7 +145,25 @@ class _LoginViewState extends State<LoginView> {
                       fontSize: 18,
                     ),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                FloatingActionButton(
+                  backgroundColor: Color(0xFF03C75A),
+                  onPressed: () {
+                    signInWithNaver();
+                  },
+                  child: Text(
+                    'N',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'SM',
+                      fontSize: 32,
+                      color: primaryLight,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
