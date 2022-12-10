@@ -17,20 +17,20 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
 
-  void signInWithNaver() async {
-    final NaverLoginResult result = await FlutterNaverLogin.logIn();
-
-    if (result.status == NaverLoginStatus.loggedIn) {
-      print('accessToken = ${result.accessToken}');
-      print('id = ${result.account.id}');
-      print('email = ${result.account.email}');
-      print('age = ${result.account.age}');
-
-      setState(() {
-        _loginPlatform = LoginPlatform.naver;
-      });
-    }
-  }
+  // void signInWithNaver() async {
+  //   final NaverLoginResult result = await FlutterNaverLogin.logIn();
+  //
+  //   if (result.status == NaverLoginStatus.loggedIn) {
+  //     print('accessToken = ${result.accessToken}');
+  //     print('id = ${result.account.id}');
+  //     print('email = ${result.account.email}');
+  //     print('age = ${result.account.age}');
+  //
+  //     setState(() {
+  //       _loginPlatform = LoginPlatform.naver;
+  //     });
+  //   }
+  // }
 
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
@@ -150,10 +150,7 @@ class _LoginViewState extends State<LoginView> {
                   height: 30,
                 ),
                 FloatingActionButton(
-                  backgroundColor: Color(0xFF03C75A),
-                  onPressed: () {
-                    signInWithNaver();
-                  },
+                  onPressed: () {},
                   child: Text(
                     'N',
                     style: TextStyle(
