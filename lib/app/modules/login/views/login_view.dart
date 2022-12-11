@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kostamobile/app/modules/home/views/home_view.dart';
 import 'package:kostamobile/app/modules/login/views/signup_view.dart';
 import 'package:kostamobile/palette.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:http/http.dart' as http;
+import 'package:kostamobile/user/user_pref.dart';
 
+import '../../../../api/api.dart';
+import '../../../../model/user.dart';
 import '../login_platform.dart';
 
 class LoginView extends StatefulWidget {
@@ -35,6 +40,36 @@ class _LoginViewState extends State<LoginView> {
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  userLogin() async {
+    try {
+      var res = await http.post(Uri.parse(API.login), body: {
+        'user_email': emailController.text.trim(),
+        'user_password': passwordController.text.trim(),
+      });
+      if (res.statusCode == 200) {
+        var resLogin = jsonDecode(res.body);
+        if (resLogin['success'] == true) {
+          Fluttertoast.showToast(msg: '로그인이 완료되었습니다');
+          User userInfo = User.fromJson(resLogin['userData']);
+
+          await RememberUser.saveRememberUserInfo(userInfo);
+
+          Get.to(HomeView());
+
+          setState(() {
+            emailController.clear();
+            passwordController.clear();
+          });
+        } else {
+          Fluttertoast.showToast(msg: '다시 시도해주세요');
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +142,11 @@ class _LoginViewState extends State<LoginView> {
                   height: 20,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      userLogin();
+                    }
+                  },
                   child: Text(
                     'Login',
                     style: TextStyle(
