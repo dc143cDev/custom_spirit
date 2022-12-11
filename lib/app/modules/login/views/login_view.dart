@@ -149,18 +149,6 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: 30,
                 ),
-                FloatingActionButton(
-                  onPressed: () {},
-                  child: Text(
-                    'N',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'SM',
-                      fontSize: 32,
-                      color: primaryLight,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

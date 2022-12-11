@@ -22,20 +22,22 @@ class _SignViewState extends State<SignView> {
 
   checkUserEmail() async {
     try {
-      var response = await http.post(
-          Uri.parse(
-            API.validateEmail,
-          ),
-          body: {
-            'user_email': emailController.text.trim(),
-          });
+      var response = await http.post(Uri.parse(API.validateEmail),
+          body: {'user_email': emailController.text.trim()});
+
       if (response.statusCode == 200) {
         var responseBody = jsonDecode(response.body);
+
         if (responseBody['existEmail'] == true) {
           Fluttertoast.showToast(msg: '해당 이메일로 가입한 아이디가 존재합니다');
+        } else {
+          saveInfo();
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 
   saveInfo() async {
@@ -49,17 +51,25 @@ class _SignViewState extends State<SignView> {
     try {
       var res = await http.post(
         Uri.parse(API.signup),
-        body: userModel.toString(),
+        body: userModel.toJson(),
       );
       if (res.statusCode == 200) {
         var resSignup = jsonDecode(res.body);
         if (resSignup['success'] == true) {
           Fluttertoast.showToast(msg: '회원가입이 완료되었습니다');
+          setState(() {
+            userNameController.clear();
+            emailController.clear();
+            passwordController.clear();
+          });
         } else {
           Fluttertoast.showToast(msg: '다시 시도해주세요');
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 
   @override
@@ -85,7 +95,7 @@ class _SignViewState extends State<SignView> {
                   height: 40,
                 ),
                 TextFormField(
-                  controller: emailController,
+                  controller: userNameController,
                   validator: (val) => val == "" ? "닉네임을 입력해주세요" : null,
                   keyboardType: TextInputType.emailAddress,
                   style: TextStyle(),
@@ -158,9 +168,13 @@ class _SignViewState extends State<SignView> {
                   height: 20,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      checkUserEmail();
+                    }
+                  },
                   child: Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(
                       fontFamily: 'SM',
                       color: accentBLue,
@@ -186,7 +200,7 @@ class _SignViewState extends State<SignView> {
                 TextButton(
                   onPressed: () {},
                   child: Text(
-                    'Create Account',
+                    '1234',
                     style: TextStyle(
                       fontFamily: 'SM',
                       color: accentBLue,
