@@ -10,9 +10,9 @@ class CustomView extends GetView<CustomController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryLight,
+      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: primaryLight,
+        backgroundColor: bgColor,
         elevation: 0,
         title: LogoAB(),
         centerTitle: false,

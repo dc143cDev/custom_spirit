@@ -8,6 +8,7 @@ abstract class Routes {
   static const CUSTOM = _Paths.CUSTOM;
   static const FUNDING = _Paths.FUNDING;
   static const NEWS = _Paths.NEWS;
+  static const MY = _Paths.MY;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const CUSTOM = '/custom';
   static const FUNDING = '/funding';
   static const NEWS = '/news';
+  static const MY = '/my';
 }

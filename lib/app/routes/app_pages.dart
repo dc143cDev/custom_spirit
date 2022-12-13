@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/my/bindings/my_binding.dart';
+import '../modules/my/views/my_view.dart';
 import '../modules/news/bindings/news_binding.dart';
 import '../modules/news/views/news_view.dart';
 
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.NEWS,
       page: () => const NewsView(),
       binding: NewsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY,
+      page: () => const MyView(),
+      binding: MyBinding(),
     ),
   ];
 }
