@@ -55,7 +55,7 @@ class _LoginViewState extends State<LoginView> {
 
           await RememberUser.saveRememberUserInfo(userInfo);
 
-          Get.to(HomeView());
+          Get.off(HomeView());
 
           setState(() {
             emailController.clear();
@@ -173,7 +173,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignView());
+                    Get.off(SignView());
                   },
                   child: Text(
                     'Create Account',

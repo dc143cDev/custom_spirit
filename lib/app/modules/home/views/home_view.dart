@@ -32,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
         unselectedLabelStyle:
             TextStyle(fontFamily: 'SM', fontWeight: FontWeight.w300),
         selectedItemColor: accentBLue,
-        backgroundColor: primaryLight,
+        backgroundColor: bgColor,
         currentIndex: selectedIndex,
         onTap: (int index) {
           setState(() {

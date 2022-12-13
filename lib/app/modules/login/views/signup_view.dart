@@ -20,6 +20,19 @@ class _SignViewState extends State<SignView> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
+  getUserData() async {
+    var url =
+        Uri.parse('http://192.168.0.150/api_new_users/user/test_data.json');
+    var response = await http.get(url);
+    print('${response.body}');
+
+    url = Uri.parse(API.jsonDataTest);
+    response = await http.post(url, body: {
+      'key': 'value',
+    });
+    print('${response.body}');
+  }
+
   checkUserEmail() async {
     try {
       var response = await http.post(Uri.parse(API.validateEmail),
@@ -198,7 +211,9 @@ class _SignViewState extends State<SignView> {
                   height: 30,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    getUserData();
+                  },
                   child: Text(
                     '1234',
                     style: TextStyle(
