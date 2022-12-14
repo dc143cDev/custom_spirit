@@ -59,6 +59,15 @@ boldText() {
   );
 }
 
+navRailText() {
+  return const TextStyle(
+    fontFamily: 'IBM',
+    fontWeight: FontWeight.w800,
+    color: accentBLue,
+    fontSize: 10,
+  );
+}
+
 class LogoL extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -99,6 +108,21 @@ class LogoAB extends StatelessWidget {
         fontWeight: FontWeight.w800,
         color: accentBLue,
         fontSize: 20,
+      ),
+    );
+  }
+}
+
+class LogoNB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'FUNDRINK',
+      style: TextStyle(
+        fontFamily: 'IBM',
+        fontWeight: FontWeight.w800,
+        color: accentBLue,
+        fontSize: 10,
       ),
     );
   }

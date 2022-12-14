@@ -26,7 +26,7 @@ class _SignViewState extends State<SignView> {
     var response = await http.get(url);
     print('${response.body}');
 
-    url = Uri.parse(API.jsonDataTest);
+    url = Uri.parse(USERAPI.jsonDataTest);
     response = await http.post(url, body: {
       'key': 'value',
     });
@@ -35,7 +35,7 @@ class _SignViewState extends State<SignView> {
 
   checkUserEmail() async {
     try {
-      var response = await http.post(Uri.parse(API.validateEmail),
+      var response = await http.post(Uri.parse(USERAPI.validateEmail),
           body: {'user_email': emailController.text.trim()});
 
       if (response.statusCode == 200) {
@@ -63,7 +63,7 @@ class _SignViewState extends State<SignView> {
 
     try {
       var res = await http.post(
-        Uri.parse(API.signup),
+        Uri.parse(USERAPI.signup),
         body: userModel.toJson(),
       );
       if (res.statusCode == 200) {
