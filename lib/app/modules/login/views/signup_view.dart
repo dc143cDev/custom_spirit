@@ -21,8 +21,7 @@ class _SignViewState extends State<SignView> {
   var passwordController = TextEditingController();
 
   getUserData() async {
-    var url =
-        Uri.parse('http://192.168.0.150/api_new_users/user/test_data.json');
+    var url = Uri.parse('http://localhost/api_new_users/user/user_data.php');
     var response = await http.get(url);
     print('${response.body}');
 
