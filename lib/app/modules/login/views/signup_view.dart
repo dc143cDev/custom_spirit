@@ -21,15 +21,17 @@ class _SignViewState extends State<SignView> {
   var passwordController = TextEditingController();
 
   getUserData() async {
-    var url = Uri.parse('http://localhost/api_new_users/user/user_data.php');
+    var url =
+        Uri.parse('http://localhost:8000/api/user_api/test_user_data.json');
     var response = await http.get(url);
     print('${response.body}');
-
-    url = Uri.parse(USERAPI.jsonDataTest);
-    response = await http.post(url, body: {
-      'key': 'value',
-    });
-    print('${response.body}');
+    //
+    // var url =
+    //     Uri.parse('http://localhost:8000/api/user_api/test_user_data.json');
+    // var response = await http.post(url, body: {
+    //   'key': 'value',
+    // });
+    // print('${response.body}');
   }
 
   checkUserEmail() async {
@@ -214,7 +216,7 @@ class _SignViewState extends State<SignView> {
                     getUserData();
                   },
                   child: Text(
-                    '1234',
+                    'test',
                     style: TextStyle(
                       fontFamily: 'SM',
                       color: accentBLue,
