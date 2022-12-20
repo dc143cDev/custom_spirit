@@ -26,6 +26,8 @@ class _LoadingState extends State<Loading> {
 
     var jsonData = await network.getJsonData();
     print(jsonData);
+    print(jsonData[0]['user_name']);
+    print(jsonData[1]['user_name']);
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return AdminView(
         getData: jsonData,
