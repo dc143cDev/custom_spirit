@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
-import '../controllers/my_controller.dart';
-
-class MyView extends GetView<MyController> {
+class MyView extends StatefulWidget {
   const MyView({Key? key}) : super(key: key);
+
+  @override
+  State<MyView> createState() => _MyViewState();
+}
+
+class _MyViewState extends State<MyView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MyView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'MyView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+    return Container();
   }
 }

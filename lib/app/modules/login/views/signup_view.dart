@@ -5,10 +5,14 @@ import 'package:kostamobile/api/api.dart';
 import 'package:kostamobile/palette.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:get/get.dart';
 import '../../../../model/user.dart';
 
+import 'package:kostamobile/model/user_data.dart';
+
 class SignView extends StatefulWidget {
+  SignView({this.parseUserData});
+  final dynamic parseUserData;
   @override
   State<SignView> createState() => _SignViewState();
 }
@@ -16,21 +20,27 @@ class SignView extends StatefulWidget {
 class _SignViewState extends State<SignView> {
   var formKey = GlobalKey<FormState>();
 
+  late String userName;
+  late String userEmail;
+
   var userNameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
-  getUserData() async {
+  Future<dynamic> getUserData() async {
     var url = Uri.parse('http://localhost:8000/get');
-    var response = await http.get(url);
-    print('${response.body}');
-    //
-    // var url = Uri.parse('http://localhost:8000/get');
-    // var response = await http.post(url, body: {
-    //   'key': 'value',
-    // });
-    // print('${response.body}');
+    http.Response response = await http.get(url);
+    var userJson = response.body;
+    var parsingData = jsonDecode(userJson);
+    print('${parsingData[0]['user_id']}');
+    return parsingData[0]['user_name'];
   }
+  //
+  // var url = Uri.parse('http://localhost:8000/get');
+  // var response = await http.post(url, body: {
+  //   'key': 'value',
+  // });
+  // print('${response.body}');
 
   checkUserEmail() async {
     try {
@@ -82,6 +92,12 @@ class _SignViewState extends State<SignView> {
       print(e.toString());
       Fluttertoast.showToast(msg: e.toString());
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
   }
 
   @override
@@ -214,7 +230,7 @@ class _SignViewState extends State<SignView> {
                     getUserData();
                   },
                   child: Text(
-                    'test',
+                    '${getUserData()}',
                     style: TextStyle(
                       fontFamily: 'SM',
                       color: accentBLue,

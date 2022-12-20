@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import '../../loading.dart';
+import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/views/admin_view.dart';
 import '../modules/custom/bindings/custom_binding.dart';
 import '../modules/custom/views/custom_view.dart';
 import '../modules/funding/bindings/funding_binding.dart';
@@ -18,7 +21,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.LOADING;
 
   static final routes = [
     GetPage(
@@ -30,6 +33,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOADING,
+      page: () => Loading(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.CUSTOM,
@@ -50,6 +58,11 @@ class AppPages {
       name: _Paths.MY,
       page: () => const MyView(),
       binding: MyBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN,
+      page: () => AdminView(),
+      binding: AdminBinding(),
     ),
   ];
 }
