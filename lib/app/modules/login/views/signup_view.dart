@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import '../../../../model/user.dart';
 
-import 'package:kostamobile/model/user_data.dart';
+import 'package:kostamobile/model/user/user_data.dart';
 
 class SignView extends StatefulWidget {
   SignView({this.parseUserData});

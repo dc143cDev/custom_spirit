@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kostamobile/app/modules/my/views/my_view.dart';
 
+import '../../home/views/home_view.dart';
+
 class AdminView extends StatefulWidget {
   AdminView({this.getData});
   final dynamic getData;
@@ -31,9 +33,8 @@ class _AdminViewState extends State<AdminView> {
           child: Column(
             children: [
               Text('${userName}'),
-              Text('aaa'),
               FloatingActionButton(onPressed: () {
-                Get.to(MyView());
+                Get.to(() => HomeView());
               })
             ],
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kostamobile/app/modules/news/views/news_banner.dart';
 import 'package:kostamobile/app/modules/news/views/news_tab.dart';
+import 'package:kostamobile/model/user/user_list.dart';
 import 'package:kostamobile/palette.dart';
 
 import '../controllers/news_controller.dart';
@@ -23,10 +24,7 @@ class NewsView extends GetView<NewsController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: 280,
-                child: ScrollBanner(),
-              ),
+              Container(height: 400, child: UserList()),
               Container(
                 child: Text(
                   'News',

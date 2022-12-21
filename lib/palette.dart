@@ -55,7 +55,7 @@ boldText() {
     fontWeight: FontWeight.w600,
     fontFamily: 'IBM',
     color: textDark,
-    fontSize: 30,
+    fontSize: 15,
   );
 }
 

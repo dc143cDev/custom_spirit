@@ -15,6 +15,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  String userName = '';
   @override
   void initState() {
     super.initState();
@@ -25,9 +26,9 @@ class _LoadingState extends State<Loading> {
     Network network = Network('http://localhost:8000/get');
 
     var jsonData = await network.getJsonData();
+    var jsonData2 = await network.getJsonData();
+    userName = jsonData[0]['user_name'];
     print(jsonData);
-    print(jsonData[0]['user_name']);
-    print(jsonData[1]['user_name']);
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return AdminView(
         getData: jsonData,

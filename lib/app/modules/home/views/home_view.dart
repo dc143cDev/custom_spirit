@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kostamobile/app/modules/custom/views/custom_view.dart';
 import 'package:kostamobile/app/modules/funding/views/funding_view.dart';
+import '../../my/views/my_view.dart';
 import '../../news/views/news_view.dart';
 
 import '../../../../palette.dart';
@@ -15,7 +16,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final List<Widget> pages = [
     NewsView(),
-    CustomView(),
+    MyView(),
     FundingView(),
   ];
 
