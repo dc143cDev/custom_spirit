@@ -10,6 +10,7 @@ class UserAddView extends StatefulWidget {
 class _UserAddViewState extends State<UserAddView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+        child: Scaffold(backgroundColor: Colors.white, body: Container()));
   }
 }

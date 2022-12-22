@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kostamobile/api/get_user_api.dart';
 import 'package:kostamobile/model/user/user_add_view.dart';
 import 'package:kostamobile/model/user/user_data.dart';
 import 'package:kostamobile/model/user/user_model.dart';
@@ -17,14 +18,15 @@ class _UserListState extends State<UserList> {
   @override
   void initState() {
     super.initState();
+    loadUsers();
 
-    users.add(
-      UserModel(
-          userId: 1,
-          userName: "test3",
-          userEmail: "test3EMail",
-          userPassword: "password"),
-    );
+    // users.add(
+    //   UserModel(
+    //       userId: 1,
+    //       userName: "test3",
+    //       userEmail: "test3EMail",
+    //       userPassword: "password"),
+    // );
   }
 
   Widget userList(users) {
@@ -50,16 +52,17 @@ class _UserListState extends State<UserList> {
                 child: Text("add user"),
               ),
               ListView.builder(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: users.length,
-                  itemBuilder: (context, index) {
-                    return UserData(
-                      model: users[index],
-                      onDelete: (UserModel model) {},
-                    );
-                  }),
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: users.length,
+                itemBuilder: (context, index) {
+                  return UserData(
+                    model: users[index],
+                    onDelete: (UserModel model) {},
+                  );
+                },
+              ),
             ],
           ),
         ],
@@ -72,7 +75,23 @@ class _UserListState extends State<UserList> {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Colors.grey,
-      body: userList(users),
+      body: loadUsers(),
     );
+  }
+
+  Widget loadUsers() {
+    return FutureBuilder(
+        future: getUserApi.getUserData(),
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<List<UserModel>?> model,
+        ) {
+          if (model.hasData) {
+            return userList(model.data);
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
   }
 }
