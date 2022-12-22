@@ -12,7 +12,6 @@ import 'package:kostamobile/user/user_pref.dart';
 
 import '../../../../api/api.dart';
 import '../../../../model/user.dart';
-import '../login_platform.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -20,8 +19,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginPlatform _loginPlatform = LoginPlatform.none;
-
   // void signInWithNaver() async {
   //   final NaverLoginResult result = await FlutterNaverLogin.logIn();
   //

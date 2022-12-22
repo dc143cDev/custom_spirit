@@ -16,7 +16,7 @@ class UserData extends StatelessWidget {
       child: Container(
         width: 200,
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: bgColor,
           borderRadius: BorderRadius.circular(50),
         ),
         child: userWidget(context),

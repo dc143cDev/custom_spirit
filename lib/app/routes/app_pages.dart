@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import '../../loading.dart';
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
+import '../modules/admin_web/bindings/admin_web_binding.dart';
+import '../modules/admin_web/views/admin_web_view.dart';
+import '../modules/console/bindings/console_binding.dart';
+import '../modules/console/views/console_view.dart';
 import '../modules/custom/bindings/custom_binding.dart';
 import '../modules/custom/views/custom_view.dart';
 import '../modules/funding/bindings/funding_binding.dart';
@@ -21,7 +25,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOADING;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -63,6 +67,16 @@ class AppPages {
       name: _Paths.ADMIN,
       page: () => AdminView(),
       binding: AdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONSOLE,
+      page: () => const ConsoleView(),
+      binding: ConsoleBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN_WEB,
+      page: () => const AdminWebView(),
+      binding: AdminWebBinding(),
     ),
   ];
 }

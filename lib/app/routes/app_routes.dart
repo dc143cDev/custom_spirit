@@ -11,6 +11,8 @@ abstract class Routes {
   static const NEWS = _Paths.NEWS;
   static const MY = _Paths.MY;
   static const ADMIN = _Paths.ADMIN;
+  static const CONSOLE = _Paths.CONSOLE;
+  static const ADMIN_WEB = _Paths.ADMIN_WEB;
 }
 
 abstract class _Paths {
@@ -23,4 +25,6 @@ abstract class _Paths {
   static const NEWS = '/news';
   static const MY = '/my';
   static const ADMIN = '/admin';
+  static const CONSOLE = '/console';
+  static const ADMIN_WEB = '/admin-web';
 }

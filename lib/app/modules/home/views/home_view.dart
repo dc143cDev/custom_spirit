@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kostamobile/app/modules/admin/views/funding_console.dart';
+import 'package:kostamobile/app/modules/admin/views/product_console.dart';
+import 'package:kostamobile/app/modules/admin/views/user_console.dart';
 import 'package:kostamobile/app/modules/custom/views/custom_view.dart';
 import 'package:kostamobile/app/modules/funding/views/funding_view.dart';
+import '../../../../model/user/user_list.dart';
 import '../../my/views/my_view.dart';
 import '../../news/views/news_view.dart';
 
@@ -15,9 +19,9 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final List<Widget> pages = [
-    NewsView(),
-    MyView(),
-    FundingView(),
+    UserList(),
+    ProductConsole(),
+    FundingConsole(),
   ];
 
   int selectedIndex = 0;

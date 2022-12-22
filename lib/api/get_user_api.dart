@@ -20,12 +20,15 @@ class getUserApi {
     print(data);
     return usersFromJson(data);
   }
-  //
+
   // static Future<bool> saveUser(
   //     UserModel model,
   //     bool isEditMode,
   //     ) async{
-  //   var userURL = 'http://localhost:8000/get';
+  //   Network network = Network('http://localhost:8000/get');
+  //   var data = await network.getJsonData();
+  //   print(data);
+  //   return usersFromJson(data);
   //
   //   if(isEditMode){
   //     user

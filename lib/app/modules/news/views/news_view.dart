@@ -24,24 +24,9 @@ class NewsView extends GetView<NewsController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(height: 400, child: UserList()),
-              Container(
-                child: Text(
-                  'News',
-                  style: TextStyle(
-                    fontFamily: 'SM',
-                    fontWeight: FontWeight.w800,
-                    color: textDark,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
               Container(
                 height: 400,
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: NewsTab(),
-                ),
+                child: UserList(),
               ),
             ],
           ),
