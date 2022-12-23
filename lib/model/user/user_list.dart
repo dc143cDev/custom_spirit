@@ -58,6 +58,8 @@ class _UserListState extends State<UserList> {
     }
   }
 
+  updateUserData() async {}
+
   @override
   void initState() {
     super.initState();
