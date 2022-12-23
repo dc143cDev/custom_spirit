@@ -12,4 +12,8 @@ class Network {
     var parsingData = jsonDecode(userJson);
     return parsingData;
   }
+
+  Future<dynamic> putJsonData() async {}
+
+  Future<dynamic> postJsonData() async {}
 }

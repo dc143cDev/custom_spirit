@@ -27,14 +27,14 @@ class _SignViewState extends State<SignView> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
-  Future<dynamic> getUserData() async {
-    var url = Uri.parse('http://localhost:8000/get');
-    http.Response response = await http.get(url);
-    var userJson = response.body;
-    var parsingData = jsonDecode(userJson);
-    print('${parsingData[0]['user_id']}');
-    return parsingData[0]['user_name'];
-  }
+  // Future<dynamic> getUserData() async {
+  //   var url = Uri.parse('http://localhost:8000/get');
+  //   http.Response response = await http.get(url);
+  //   var userJson = response.body;
+  //   var parsingData = jsonDecode(userJson);
+  //   print('${parsingData[0]['user_id']}');
+  //   return parsingData[0]['user_name'];
+  // }
   //
   // var url = Uri.parse('http://localhost:8000/get');
   // var response = await http.post(url, body: {
@@ -84,6 +84,28 @@ class _SignViewState extends State<SignView> {
             emailController.clear();
             passwordController.clear();
           });
+          try {
+            var res = await http.post(
+              Uri.parse(USERAPI.signup),
+              body: userModel.toJson(),
+            );
+            if (res.statusCode == 200) {
+              var resSignup = jsonDecode(res.body);
+              if (resSignup['success'] == true) {
+                Fluttertoast.showToast(msg: '회원가입이 완료되었습니다');
+                setState(() {
+                  userNameController.clear();
+                  emailController.clear();
+                  passwordController.clear();
+                });
+              } else {
+                Fluttertoast.showToast(msg: '다시 시도해주세요');
+              }
+            }
+          } catch (e) {
+            print(e.toString());
+            Fluttertoast.showToast(msg: e.toString());
+          }
         } else {
           Fluttertoast.showToast(msg: '다시 시도해주세요');
         }
@@ -97,7 +119,6 @@ class _SignViewState extends State<SignView> {
   @override
   void initState() {
     super.initState();
-    getUserData();
   }
 
   @override
@@ -226,11 +247,9 @@ class _SignViewState extends State<SignView> {
                   height: 30,
                 ),
                 TextButton(
-                  onPressed: () {
-                    getUserData();
-                  },
+                  onPressed: () {},
                   child: Text(
-                    '${getUserData()}',
+                    '',
                     style: TextStyle(
                       fontFamily: 'SM',
                       color: accentBLue,

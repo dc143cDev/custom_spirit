@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kostamobile/api/get_user_api.dart';
 import 'package:kostamobile/model/user/user_add_view.dart';
 import 'package:kostamobile/model/user/user_data.dart';
@@ -16,21 +19,102 @@ class UserList extends StatefulWidget {
 
 class _UserListState extends State<UserList> {
   List<UserModel> users = List<UserModel>.empty(growable: true);
+  var formKey = GlobalKey<FormState>();
+
+  var userNameController = TextEditingController();
+  var userEmailController = TextEditingController();
+  var userPasswordController = TextEditingController();
+
+  saveUser() async {
+    var url = "http://localhost:8000/createUser";
+    final postJson = jsonEncode({
+      "user_name": userNameController.text,
+      "user_email": userEmailController.text,
+      "user_password": userPasswordController.text,
+    });
+    print(postJson);
+    try {
+      var res = await http.post(
+        Uri.parse(url),
+        headers: {"Content-Type": "application/json"},
+        body: postJson,
+      );
+      if (res.statusCode == 200) {
+        var resSignup = jsonDecode(res.body);
+        if (resSignup['success'] == true) {
+          Fluttertoast.showToast(msg: '회원가입이 완료되었습니다');
+          setState(() {
+            userNameController.clear();
+            userEmailController.clear();
+            userPasswordController.clear();
+          });
+        } else {
+          Fluttertoast.showToast(msg: '다시 시도해주세요');
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    // loadUsers();
-
-    // users.add(
-    //   UserModel(
-    //       userId: 1,
-    //       userName: "test3",
-    //       userEmail: "test3EMail",
-    //       userPassword: "password"),
-    // );
   }
 
+  Future<void> updateUser() async {
+    await showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Form(
+            key: formKey,
+            child: SizedBox(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: 50,
+                  // bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      controller: userNameController,
+                      decoration: InputDecoration(labelText: 'Name'),
+                    ),
+                    TextFormField(
+                      controller: userEmailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(labelText: 'Email'),
+                    ),
+                    TextFormField(
+                      controller: userPasswordController,
+                      decoration: InputDecoration(labelText: 'Password'),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: accentBLue),
+                      onPressed: () {
+                        saveUser();
+                      },
+                      child: Text('Update data'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  @override
   Widget userList(users) {
     return Scaffold(
       backgroundColor: bgColor,
@@ -40,7 +124,24 @@ class _UserListState extends State<UserList> {
         title: LogoAB(),
         centerTitle: false,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+          IconButton(
+            onPressed: () {
+              loadUsers();
+            },
+            icon: Icon(
+              Icons.refresh,
+              color: accentBLue,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              updateUser();
+            },
+            icon: Icon(
+              Icons.add_box,
+              color: accentBLue,
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -51,19 +152,6 @@ class _UserListState extends State<UserList> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // ElevatedButton(
-                //   style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.green,
-                //       maximumSize: Size(80, 50),
-                //       padding: EdgeInsets.symmetric(horizontal: 16),
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.all(Radius.circular(10)),
-                //       )),
-                //   onPressed: () {
-                //     Get.to(UserAddView());
-                //   },
-                //   child: Text("add user"),
-                // ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),
