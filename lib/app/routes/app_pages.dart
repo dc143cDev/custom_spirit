@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kostamobile/check_view.dart';
 
 import '../../loading.dart';
 import '../modules/admin/bindings/admin_binding.dart';
@@ -25,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.CHECK;
 
   static final routes = [
     GetPage(
@@ -78,5 +79,6 @@ class AppPages {
       page: () => const AdminWebView(),
       binding: AdminWebBinding(),
     ),
+    GetPage(name: _Paths.CHECK, page: () => CheckView(), binding: HomeBinding())
   ];
 }

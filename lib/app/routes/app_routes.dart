@@ -13,6 +13,7 @@ abstract class Routes {
   static const ADMIN = _Paths.ADMIN;
   static const CONSOLE = _Paths.CONSOLE;
   static const ADMIN_WEB = _Paths.ADMIN_WEB;
+  static const CHECK = _Paths.CHECK;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const ADMIN = '/admin';
   static const CONSOLE = '/console';
   static const ADMIN_WEB = '/admin-web';
+  static const CHECK = '/check';
 }

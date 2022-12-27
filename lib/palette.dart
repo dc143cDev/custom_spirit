@@ -134,11 +134,11 @@ class LinePrimary extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 5,
+          width: 40,
         ),
         Container(
           color: primaryLight,
-          width: 132,
+          width: 102,
           height: 3,
         ),
         SizedBox(
@@ -154,7 +154,7 @@ class LinePrimary extends StatelessWidget {
         ),
         Container(
           color: primaryLight,
-          width: 132,
+          width: 102,
           height: 3,
         ),
       ],

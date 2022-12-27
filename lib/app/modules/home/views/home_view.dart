@@ -21,7 +21,6 @@ class _HomeViewState extends State<HomeView> {
   final List<Widget> pages = [
     UserList(),
     ProductConsole(),
-    FundingConsole(),
   ];
 
   int selectedIndex = 0;
@@ -49,8 +48,6 @@ class _HomeViewState extends State<HomeView> {
               icon: Icon(Icons.people_sharp), label: 'User'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined), label: 'Product'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_drink), label: 'Funding'),
         ],
       ),
       body: pages[selectedIndex],

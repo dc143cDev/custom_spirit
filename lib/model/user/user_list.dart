@@ -147,28 +147,30 @@ class _UserListState extends State<UserList> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: users.length,
-                  itemBuilder: (context, index) {
-                    return UserData(
-                      model: users[index],
-                      onDelete: (UserModel model) {},
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+        child: Container(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: users.length,
+                    itemBuilder: (context, index) {
+                      return UserData(
+                        model: users[index],
+                        onDelete: (UserModel model) {},
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
